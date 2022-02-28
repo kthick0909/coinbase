@@ -36,7 +36,7 @@ const CoinItem = ({
         }
         getImgUrl()
         getBalance()
-    }, [])
+    }, [thirdWebTokens, token])
     
   return (
     <Wrapper 
