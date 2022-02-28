@@ -63,7 +63,7 @@ return (
                     value={amount}
                     onChange={e => setAmount(e.target.value)}  
                 />                
-                <span>{selectedToken.symbol}</span>
+                <span></span>
             </FlexInputContainer>
             <Warning style={{ color: amount && '#0a0b0d' }}>
                 Amount is a required field
