@@ -14,34 +14,29 @@ const CoinItem = ({
     sanityTokens,
     setAction
 }) => {
+ 
     const [balance, setBalance] = useState('Fetching...')
     const [imageUrl, setImageUrl] = useState(null)
-
-    useEffect(() => {
-        const getBalance = async () => {
-            let activeThirdWebToken
-
-            thirdWebTokens.map(thirdWebToken =>{
-                if(thirdWebToken.address === token.contractAddrss){
-                   activeThirdWebToken = thirdWebToken
+    useEffect(() =>{
+       const getBalance = async() => { 
+           let activeThirdWebToken
+            thirdWebTokens.map(thirdWebtoken => {
+                if(thirdWebtoken.address === token.contractAddress){
+                    activeThirdWebToken = thirdWebtoken
                 }
             })
             const balance = await activeThirdWebToken.balanceOf(sender)
-            if (activeThirdWebToken){
-                getBalance()
-            }
+
             return await setBalance(balance.displayValue.split('.')[0])
         }
 
-        const getImgUrl = async () => {
+        const getImgUrl = async() => {
             const imgUrl = imageUrlBuilder(client).image(token.logo).url()
             setImageUrl(imgUrl)
         }
-
         getImgUrl()
-        // getBalance()
-    }, [thirdWebTokens])
-
+        getBalance()
+    }, [])
     
   return (
     <Wrapper 
